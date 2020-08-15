@@ -8,7 +8,7 @@ import (
 	"math/big"
 )
 
-const targetBits = 20
+const targetBits = 8
 
 var (
 	maxNonce = math.MaxInt64
@@ -22,7 +22,7 @@ type ProofOfWork struct {
 //构建和返回工作量证明(ProofOfWork)
 func NewProofOfWork(b *Block) *ProofOfWork {
 	target := big.NewInt(1)
-	//移位操作前20位变成0
+	//移位操作前targetBits位变成0
 	target.Lsh(target, uint(256-targetBits))
 
 	pow := &ProofOfWork{b, target}
